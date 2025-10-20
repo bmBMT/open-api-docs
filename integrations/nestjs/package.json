@@ -22,14 +22,14 @@
     "build": "tsup ./src/index.ts --format esm,cjs --dts"
   },
   "devDependencies": {
-    "@bmbmt-swagger/react-ui": "workspace:^",
+    "@bmbmt-swagger/swagger-layout": "workspace:^",
     "@nestjs/common": "^11.0.1",
     "@nestjs/serve-static": "^5.0.4",
     "@types/node": "^24.8.1",
     "tsup": "^8.5.0"
   },
   "peerDependencies": {
-    "@bmbmt-swagger/react-ui": "workspace:^",
+    "@bmbmt-swagger/swagger-layout": "workspace:^",
     "@nestjs/common": "^11.0.1",
     "@nestjs/serve-static": "^5.0.4"
   }

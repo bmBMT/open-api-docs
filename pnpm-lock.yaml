@@ -23,6 +23,9 @@ importers:
       '@bmbmt-swagger/nestjs':
         specifier: workspace:^
         version: link:../../integrations/nestjs
+      '@bmbmt-swagger/swagger-layout':
+        specifier: workspace:^
+        version: link:../../packages/swagger-layout
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -120,9 +123,9 @@ importers:
 
   integrations/nestjs:
     devDependencies:
-      '@bmbmt-swagger/react-ui':
+      '@bmbmt-swagger/swagger-layout':
         specifier: workspace:^
-        version: link:../../packages/react-ui
+        version: link:../../packages/swagger-layout
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -136,7 +139,7 @@ importers:
         specifier: ^8.5.0
         version: 8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.15))(postcss@8.5.6)(typescript@5.9.3)
 
-  packages/react-ui:
+  packages/swagger-layout:
     dependencies:
       react:
         specifier: ^19.1.1

@@ -11,14 +11,15 @@ export class SwaggerUIModule {
   static forRoot(options: SwaggerUIOptions = {}): DynamicModule {
     const serveRoot = options.path ?? "/docs";
 
-    const buildPath = join(__dirname, "..", "react-ui");
+    const buildPath = join(process.cwd(), 'node_modules', '@bmbmt-swagger', 'swagger-layout', 'dist');
 
     return {
       module: SwaggerUIModule,
       imports: [
         ServeStaticModule.forRoot({
           rootPath: buildPath,
-          serveRoot
+          serveRoot,
+          exclude: ['/api/*']
         }),
       ],
       providers: [{ provide: "MY_DOCS_OPTIONS", useValue: options }],
