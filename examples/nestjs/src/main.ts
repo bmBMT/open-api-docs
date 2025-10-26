@@ -15,9 +15,13 @@ async function bootstrap() {
     .setTermsOfService('test')
     .setContact('namqwedase', 'url', 'email')
     .setLicense('license1', 'url')
+    .addOAuth2()
+    .addSecurity('keycloak', {
+      type: 'openIdConnect',
+      openIdConnectUrl: 'https://test.com',
+    })
     .addBearerAuth()
     .addBasicAuth()
-    .addOAuth2()
     .addApiKey()
     .addCookieAuth();
 
