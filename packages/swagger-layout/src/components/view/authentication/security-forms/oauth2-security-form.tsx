@@ -1,10 +1,7 @@
+import type { IAuthProps } from "@/types/auth-component-props.type";
 import { OpenAPIV3 } from "openapi-types";
 
-interface IHttpSecurityForm {
-  schema: OpenAPIV3.OAuth2SecurityScheme;
-}
-
-const OAuth2SecurityForm = ({ schema }: IHttpSecurityForm) => {
+const OAuth2SecurityForm = ({ schema }: IAuthProps<OpenAPIV3.OAuth2SecurityScheme>) => {
   console.log(schema);
 
   return <div>OAuth2</div>;

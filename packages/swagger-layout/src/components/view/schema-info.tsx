@@ -8,7 +8,7 @@ const SchemaInfo = () => {
   const { title, description, version, contact, termsOfService, license } = schema?.info ?? {};
 
   return (
-    <div className="flex flex-col space-y-3">
+    <div className="space-y-3">
       <div className="flex space-x-2 items-center">
         <BookMarked />
         <Label className="capitalize text-2xl">{title}</Label>

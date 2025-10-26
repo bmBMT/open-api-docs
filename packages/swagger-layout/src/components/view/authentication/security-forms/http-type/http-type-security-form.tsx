@@ -3,17 +3,14 @@ import type { OpenAPIV3 } from "openapi-types";
 import AuthenticationNotSupported from "../../authentication-not-supported";
 import BearerSchemaSecurityForm from "./bearer-schema-security-form";
 import BasicSchemaSecurityForm from "./basic-schema-security-form";
+import type { IAuthProps } from "@/types/auth-component-props.type";
 
-interface IHttpTypeSecurityForm {
-  schema: OpenAPIV3.HttpSecurityScheme;
-}
-
-const HttpTypeSecurityForm = ({ schema }: IHttpTypeSecurityForm) => {
+const HttpTypeSecurityForm = ({ name, schema }: IAuthProps<OpenAPIV3.HttpSecurityScheme>) => {
   switch (schema.scheme as HttpSecuritySchema) {
     case "bearer":
-      return <BearerSchemaSecurityForm schema={schema} />;
+      return <BearerSchemaSecurityForm name={name} schema={schema} />;
     case "basic":
-      return <BasicSchemaSecurityForm schema={schema} />;
+      return <BasicSchemaSecurityForm name={name} schema={schema} />;
     default:
       return <AuthenticationNotSupported />;
   }

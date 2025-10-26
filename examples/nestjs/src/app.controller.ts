@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiOkResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags, ApiBasicAuth } from '@nestjs/swagger';
 
 @ApiTags('ExampleController')
 @Controller()
-@ApiBearerAuth()
+@ApiBasicAuth()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
