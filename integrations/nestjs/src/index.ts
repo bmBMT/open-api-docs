@@ -1,1 +1,1 @@
-export * from './swagger.module'
+export * from "./api-docs.module";
