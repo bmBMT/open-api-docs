@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 import { cn } from "@/lib/utils";
 
@@ -33,21 +34,22 @@ function SheetOverlay({ className, ...props }: React.ComponentProps<typeof Sheet
   );
 }
 
-function SheetContent({
-  className,
-  children,
-  side = "right",
-  ...props
-}: React.ComponentProps<typeof SheetPrimitive.Content> & {
+type SheetContentProps = React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: "top" | "right" | "bottom" | "left";
-}) {
+};
+
+interface ISheetContent extends SheetContentProps {
+  scrollbarRef?: React.RefObject<PerfectScrollbar | null>;
+}
+
+function SheetContent({ className, children, side = "right", scrollbarRef, ...props }: ISheetContent) {
   return (
     <SheetPortal>
       <SheetOverlay />
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col p-4 gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
           side === "right" &&
             "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
           side === "left" &&
@@ -60,7 +62,9 @@ function SheetContent({
         )}
         {...props}
       >
-        {children}
+        <PerfectScrollbar className="p-4" options={{ suppressScrollX: true }} ref={scrollbarRef}>
+          {children}
+        </PerfectScrollbar>
         <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-5.5 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
           <XIcon className="size-5" />
           <span className="sr-only">Close</span>

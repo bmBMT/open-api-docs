@@ -3,8 +3,8 @@ import { z } from "zod";
 
 const error = REQUIRED_FIELD_MESSAGE("Field");
 
-export const BEARER_AUTH_SCHEMA = z.object({
+export const DEFAULT_AUTH_SCHEMA = z.object({
   value: z.string({ error }).min(1, error),
 });
 
-export type IBearerAuthSchema = z.infer<typeof BEARER_AUTH_SCHEMA>;
+export type IDefaultAuthSchema = z.infer<typeof DEFAULT_AUTH_SCHEMA>;

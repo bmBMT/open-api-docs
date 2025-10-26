@@ -1,4 +1,4 @@
-import { BEARER_AUTH_SCHEMA, type IBearerAuthSchema } from "@/schemas/auth/bearer-auth.schema";
+import { DEFAULT_AUTH_SCHEMA, type IDefaultAuthSchema } from "@/schemas/auth/default-auth.schema";
 import { OpenAPIV3 } from "openapi-types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,14 +14,14 @@ const BearerSchemaSecurityForm = ({ name, schema }: IAuthProps<OpenAPIV3.HttpSec
   const clearAuthValue = useAuthStore(state => state.clearStorageItem);
   const isAuthorized = !!storageItem;
 
-  const form = useForm<IBearerAuthSchema>({
+  const form = useForm<IDefaultAuthSchema>({
     defaultValues: {
       value: "",
     },
-    resolver: zodResolver(BEARER_AUTH_SCHEMA),
+    resolver: zodResolver(DEFAULT_AUTH_SCHEMA),
   });
 
-  const onSubmit = (data: IBearerAuthSchema) => {
+  const onSubmit = (data: IDefaultAuthSchema) => {
     setAuthValue(name, {
       value: data.value,
       schema,
