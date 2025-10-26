@@ -15,7 +15,7 @@ const ContentLayoyt = ({ children }: PropsWithChildren) => {
   if (!isSchemaLoaded && !isSchemaLoading) return <SchemaNotLoaded />;
   return (
     <PerfectScrollbar className="min-h-[100vh]">
-      <div className="max-w-[1460px] mx-auto my-[25px] px-5">
+      <div className="max-w-[1460px] mx-auto my-[25px] px-5 space-y-10">
         <div className="flex justify-between items-start">
           <SchemaInfo />
           <div className="flex flex-col space-y-5 items-end">

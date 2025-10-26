@@ -29,7 +29,7 @@ async function bootstrap() {
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerBuiltConfig);
 
-  // app.setGlobalPrefix('/api');
+  app.setGlobalPrefix('/api');
 
   SwaggerModule.setup('/docs', app, swaggerDocument, {
     swaggerOptions: {
@@ -43,9 +43,7 @@ async function bootstrap() {
     origin: '*',
   });
 
-  ApiDocsModule.setup('/api-docs', app, swaggerDocument, {
-    useGlobalPrefix: true,
-  });
+  ApiDocsModule.setup('/api-docs', app, swaggerDocument);
 
   await app.listen(process.env.PORT ?? 3000);
 
