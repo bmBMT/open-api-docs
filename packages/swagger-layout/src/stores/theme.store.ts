@@ -15,6 +15,8 @@ const useThemeStore = create<IThemeStore>((set, get) => ({
   initTheme: () => {
     const theme = localStorage.getItem(STORAGE_KEY) as Theme;
 
+    if (!theme) return;
+
     const updateBrowserTheme = get().updateBrowserTheme;
 
     updateBrowserTheme(theme);

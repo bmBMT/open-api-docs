@@ -5,7 +5,7 @@ import SchemaNotLoaded from "@/components/view/schema-not-loaded";
 import SettingsPopover from "@/components/view/settings-popover";
 import useOpenApiStore from "@/stores/open-api.store";
 import type { PropsWithChildren } from "react";
-import PerfectScrollbar from "react-perfect-scrollbar";
+import ThemeSwitcher from "@/components/view/theme-switcher";
 
 const ContentLayoyt = ({ children }: PropsWithChildren) => {
   const isSchemaLoading = useOpenApiStore(state => state.isLoading);
@@ -14,20 +14,19 @@ const ContentLayoyt = ({ children }: PropsWithChildren) => {
   if (isSchemaLoading) return;
   if (!isSchemaLoaded && !isSchemaLoading) return <SchemaNotLoaded />;
   return (
-    <PerfectScrollbar className="min-h-[100vh]">
-      <div className="max-w-[1460px] mx-auto my-[25px] px-5 space-y-10">
-        <div className="flex justify-between items-start">
-          <SchemaInfo />
-          <div className="flex flex-col space-y-5 items-end">
-            <div className="flex">
-              <SettingsPopover />
-            </div>
-            <AuthenticationSheet />
+    <div className="max-w-[1460px] mx-auto my-[25px] px-5 space-y-10">
+      <div className="flex justify-between items-start">
+        <SchemaInfo />
+        <div className="flex flex-col space-y-5 items-end">
+          <div className="flex space-x-4">
+            <ThemeSwitcher />
+            <SettingsPopover />
           </div>
+          <AuthenticationSheet />
         </div>
-        {children}
       </div>
-    </PerfectScrollbar>
+      {children}
+    </div>
   );
 };
 
