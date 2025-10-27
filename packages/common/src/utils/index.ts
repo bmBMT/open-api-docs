@@ -1,4 +1,4 @@
-export * from "./swagger-schema-path";
+export * from "./open-api-document-path";
 export * from "./normolize-rel-path";
 export * from "./validate-path";
 export * from "./get-nest-global-prefix";

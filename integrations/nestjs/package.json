@@ -1,5 +1,5 @@
 {
-  "name": "@bmbmt-swagger/nestjs",
+  "name": "@open-api-docs/nestjs",
   "version": "0.0.0",
   "private": true,
   "main": "dist/index.cjs",
@@ -22,7 +22,7 @@
     "build": "tsup ./src/index.ts --format esm,cjs --dts"
   },
   "devDependencies": {
-    "@bmbmt-swagger/swagger-layout": "workspace:^",
+    "@open-api-docs/swagger-layout": "workspace:^",
     "@nestjs/common": "^11.0.1",
     "@nestjs/serve-static": "^5.0.4",
     "@types/express": "^5.0.0",
@@ -30,12 +30,12 @@
     "tsup": "^8.5.0"
   },
   "peerDependencies": {
-    "@bmbmt-swagger/swagger-layout": "workspace:^",
+    "@open-api-docs/swagger-layout": "workspace:^",
     "@nestjs/common": "^11.0.1",
     "@nestjs/serve-static": "^5.0.4"
   },
   "dependencies": {
-    "@bmbmt-swagger/common": "workspace:^",
+    "@open-api-docs/common": "workspace:^",
     "@nestjs/swagger": "^11.2.1"
   }
 }

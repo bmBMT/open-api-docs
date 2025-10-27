@@ -9,6 +9,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  @ApiTags('Test')
   @ApiOkResponse({ type: String })
   getHello(): string {
     return this.appService.getHello();

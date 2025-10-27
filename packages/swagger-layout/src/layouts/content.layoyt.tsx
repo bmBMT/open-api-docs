@@ -3,13 +3,13 @@ import AuthenticationSheet from "@/components/view/authentication/authentication
 import SchemaInfo from "@/components/view/schema-info";
 import SchemaNotLoaded from "@/components/view/schema-not-loaded";
 import SettingsPopover from "@/components/view/settings-popover";
-import useSwaggerStore from "@/stores/swagger.store";
+import useOpenApiStore from "@/stores/open-api.store";
 import type { PropsWithChildren } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 const ContentLayoyt = ({ children }: PropsWithChildren) => {
-  const isSchemaLoading = useSwaggerStore(state => state.isLoading);
-  const isSchemaLoaded = useSwaggerStore(state => state.isSchemaLoaded);
+  const isSchemaLoading = useOpenApiStore(state => state.isLoading);
+  const isSchemaLoaded = useOpenApiStore(state => state.isSchemaLoaded);
 
   if (isSchemaLoading) return;
   if (!isSchemaLoaded && !isSchemaLoading) return <SchemaNotLoaded />;

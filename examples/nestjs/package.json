@@ -20,8 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@bmbmt-swagger/nestjs": "workspace:^",
-    "@bmbmt-swagger/swagger-layout": "workspace:^",
+    "@open-api-docs/nestjs": "workspace:^",
+    "@open-api-docs/swagger-layout": "workspace:^",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",

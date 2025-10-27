@@ -20,12 +20,6 @@ importers:
 
   examples/nestjs:
     dependencies:
-      '@bmbmt-swagger/nestjs':
-        specifier: workspace:^
-        version: link:../../integrations/nestjs
-      '@bmbmt-swagger/swagger-layout':
-        specifier: workspace:^
-        version: link:../../packages/swagger-layout
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -41,6 +35,12 @@ importers:
       '@nestjs/swagger':
         specifier: ^11.2.1
         version: 11.2.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)
+      '@open-api-docs/nestjs':
+        specifier: workspace:^
+        version: link:../../integrations/nestjs
+      '@open-api-docs/swagger-layout':
+        specifier: workspace:^
+        version: link:../../packages/swagger-layout
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -126,22 +126,22 @@ importers:
 
   integrations/nestjs:
     dependencies:
-      '@bmbmt-swagger/common':
-        specifier: workspace:^
-        version: link:../../packages/common
       '@nestjs/swagger':
         specifier: ^11.2.1
         version: 11.2.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)
-    devDependencies:
-      '@bmbmt-swagger/swagger-layout':
+      '@open-api-docs/common':
         specifier: workspace:^
-        version: link:../../packages/swagger-layout
+        version: link:../../packages/common
+    devDependencies:
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/serve-static':
         specifier: ^5.0.4
         version: 5.0.4(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2))(express@5.1.0)
+      '@open-api-docs/swagger-layout':
+        specifier: workspace:^
+        version: link:../../packages/swagger-layout
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.3
@@ -239,12 +239,12 @@ importers:
         specifier: ^5.0.8
         version: 5.0.8(@types/react@19.2.2)(immer@10.2.0)(react@19.2.0)
     devDependencies:
-      '@bmbmt-swagger/common':
-        specifier: workspace:^
-        version: link:../common
       '@eslint/js':
         specifier: ^9.36.0
         version: 9.38.0
+      '@open-api-docs/common':
+        specifier: workspace:^
+        version: link:../common
       '@types/node':
         specifier: ^24.8.1
         version: 24.8.1

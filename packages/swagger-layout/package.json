@@ -1,5 +1,5 @@
 {
-  "name": "@bmbmt-swagger/swagger-layout",
+  "name": "@open-api-docs/swagger-layout",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -35,7 +35,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@bmbmt-swagger/common": "workspace:^",
+    "@open-api-docs/common": "workspace:^",
     "@eslint/js": "^9.36.0",
     "@types/node": "^24.8.1",
     "@types/react": "^19.1.16",

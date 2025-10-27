@@ -4,12 +4,12 @@ import type { Response, Request } from "express";
 import {
   getNestGlobalPrefix,
   normalizeRelPath,
-  SWAGGER_SCHEMA_PATH,
+  OPEN_API_DOCUMENT_PATH,
   validateGlobalPrefix,
   validatePath,
   type IApiDocsModuleConfig,
-  type SwaggerSchemaType,
-} from "@bmbmt-swagger/common";
+  type OpenApiDocumentType,
+} from "@open-api-docs/common";
 import { join } from "path";
 import { readFileSync } from "fs";
 
@@ -26,18 +26,18 @@ export class ApiDocsModule {
         ? `${globalPrefix}${validatePath(docsPath)}`
         : docsPath
     );
-    const buildPath = join(process.cwd(), "node_modules", "@bmbmt-swagger", "swagger-layout", "dist");
+    const buildPath = join(process.cwd(), "node_modules", "@open-api-docs", "swagger-layout", "dist");
 
     const document = typeof documentOrFactory === "function" ? documentOrFactory() : documentOrFactory;
     const finalDocument = {
       globalPrefix,
       document,
-    } as SwaggerSchemaType;
+    } as OpenApiDocumentType;
 
     const httpAdapter = app.getHttpAdapter();
 
     httpAdapter.get(
-      normalizeRelPath(validatePath(join(finalPath, SWAGGER_SCHEMA_PATH))),
+      normalizeRelPath(validatePath(join(finalPath, OPEN_API_DOCUMENT_PATH))),
       (_: Request, res: Response) => {
         res.type("application/json");
 

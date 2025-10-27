@@ -3,7 +3,7 @@ import HttpSecurityForm from "./security-forms/http-type/http-type-security-form
 import OpenIdSecurityForm from "./security-forms/open-id-security-form";
 import OAuth2SecurityForm from "./security-forms/oauth2-security-form";
 import ApiKeySecurityForm from "./security-forms/api-key-security-form";
-import useSwaggerStore from "@/stores/swagger.store";
+import useOpenApiStore from "@/stores/open-api.store";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useAuthStore from "@/stores/auth.store";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -32,7 +32,7 @@ interface IAuthenticationForms {
 }
 
 const AuthenticationForms = ({ scrollbarRef }: IAuthenticationForms) => {
-  const schema = useSwaggerStore(state => state.schema?.document);
+  const schema = useOpenApiStore(state => state.schema?.document);
   const storage = useAuthStore(state => state.storage);
   const savedAuthNames = Object.keys(storage);
   const securitySchemeNames = Object.keys(schema?.components?.securitySchemes ?? {});

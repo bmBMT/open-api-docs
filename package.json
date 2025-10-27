@@ -1,5 +1,5 @@
 {
-  "name": "bmbmt-swagger",
+  "name": "open-api-docs",
   "private": true,
   "scripts": {
     "build": "turbo run build",

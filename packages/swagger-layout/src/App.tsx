@@ -1,15 +1,15 @@
 import { useLayoutEffect } from "react";
-import useSwaggerStore from "./stores/swagger.store";
+import useOpenApiStore from "./stores/open-api.store";
 import ContentLayoyt from "./layouts/content.layoyt";
 import { ThemeProvider } from "./providers/theme.provider";
 import GroupedOperations from "./components/view/operations/grouped-operations";
 
 function App() {
-  const initSwaggerStore = useSwaggerStore(state => state.init);
+  const initOpenApiStore = useOpenApiStore(state => state.init);
 
   useLayoutEffect(() => {
-    initSwaggerStore();
-  }, [initSwaggerStore]);
+    initOpenApiStore();
+  }, [initOpenApiStore]);
 
   return (
     <ThemeProvider>

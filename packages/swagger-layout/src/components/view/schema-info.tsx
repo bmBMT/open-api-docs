@@ -1,10 +1,10 @@
-import useSwaggerStore from "@/stores/swagger.store";
+import useOpenApiStore from "@/stores/open-api.store";
 import { BookMarked } from "lucide-react";
 import { Label } from "../ui/label";
 import { Badge } from "../ui/badge";
 
 const SchemaInfo = () => {
-  const schema = useSwaggerStore(state => state.schema?.document);
+  const schema = useOpenApiStore(state => state.schema?.document);
   const { title, description, version, contact, termsOfService, license } = schema?.info ?? {};
 
   return (
