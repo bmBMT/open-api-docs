@@ -43,7 +43,9 @@ async function bootstrap() {
     origin: '*',
   });
 
-  ApiDocsModule.setup('/api-docs', app, swaggerDocument);
+  ApiDocsModule.setup('/api-docs', app, swaggerDocument, {
+    operationsSorter: 'method',
+  });
 
   await app.listen(process.env.PORT ?? 3000);
 

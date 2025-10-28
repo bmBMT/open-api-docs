@@ -1,6 +1,5 @@
 import type { OpenAPIV3 } from "openapi-types";
-
-type OperationsSorterType = "alpha" | "method";
+import type { OperationsSorterType } from './operations-sorter.type';
 
 export interface OpenApiDocumentType {
   globalPrefix?: string;

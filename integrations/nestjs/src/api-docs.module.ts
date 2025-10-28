@@ -31,6 +31,7 @@ export class ApiDocsModule {
     const document = typeof documentOrFactory === "function" ? documentOrFactory() : documentOrFactory;
     const finalDocument = {
       globalPrefix,
+      operationsSorter: options?.operationsSorter,
       document,
     } as OpenApiDocumentType;
 

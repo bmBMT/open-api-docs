@@ -1,6 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useOpenApiStore from "@/stores/open-api.store";
-import { groupOperationsByMethod } from "@open-api-docs/common";
+import { groupOperationsByAlpha, groupOperationsByMethod } from "@open-api-docs/common";
 import Operation from "./operation";
 import { useEffect, useState } from "react";
 import type Scrollbars from "react-custom-scrollbars-2";
@@ -12,8 +12,10 @@ interface IGroupedOperations {
 }
 
 const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
+  const operationsSorter = useOpenApiStore(state => state.schema?.operationsSorter);
   const openApiDocument = useOpenApiStore(state => state.schema?.document);
-  const groupedOperations = groupOperationsByMethod(openApiDocument!.paths);
+  const sortFunction = operationsSorter === "alpha" ? groupOperationsByAlpha : groupOperationsByMethod;
+  const groupedOperations = sortFunction(openApiDocument!.paths);
   const [accordionValue, setAccordionValue] = useState([...Object.keys(groupedOperations), anchor]);
 
   const onValueChange = (value: string[]) => {
