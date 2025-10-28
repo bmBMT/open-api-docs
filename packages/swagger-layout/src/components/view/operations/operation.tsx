@@ -32,7 +32,6 @@ const Operation = ({ tag, schema }: IOperation) => {
         <AccordionContent className="mt-4 mx-2 space-y-2">
           {deprecated && <Label className="text-gray-60000">Warning: Deprecated</Label>}
           <OperationDescription description={description} externalDocs={externalDocs} />
-          <hr className='my-4' />
           <div className={cn("flex items-end", showServersSelector ? "justify-between" : "justify-end")}>
             {showServersSelector && <ServersSelect servers={servers} selected={server} onServerChange={setServer} />}
             <Button onClick={toggleTryOperation} variant={tryOperation ? "destructive" : "secondary"}>

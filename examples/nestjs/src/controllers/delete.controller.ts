@@ -6,9 +6,7 @@ import {
   Body,
   HttpCode,
   HttpStatus,
-  ParseUUIDPipe,
   DefaultValuePipe,
-  // UseGuards,
 } from '@nestjs/common';
 import {
   ApiBasicAuth,
@@ -23,12 +21,10 @@ import {
 import { DeleteBodyDto } from 'src/dtos/delete-body.dto';
 import { DeleteResponseDto } from 'src/dtos/delete-response.dto';
 import { EntityIdParamDto } from 'src/dtos/entity-id-param.dto';
-// import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Example')
 @ApiBearerAuth()
 @Controller()
-// @UseGuards(AuthGuard('jwt'))
 export class DeleteController {
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
