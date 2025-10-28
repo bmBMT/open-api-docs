@@ -22,11 +22,12 @@ import {
 } from '@nestjs/swagger';
 import { DeleteBodyDto } from 'src/dtos/delete-body.dto';
 import { DeleteResponseDto } from 'src/dtos/delete-response.dto';
+import { EntityIdParamDto } from 'src/dtos/entity-id-param.dto';
 // import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Example')
 @ApiBearerAuth()
-@Controller('delete')
+@Controller()
 // @UseGuards(AuthGuard('jwt'))
 export class DeleteController {
   @Delete(':id')
@@ -38,6 +39,10 @@ export class DeleteController {
       description: 'API спецификация и бизнес-правила удаления',
       url: 'https://example-wiki.company.com/api/delete-guidelines',
     },
+    servers: [
+      { url: 'http://server-delete-one.com', description: 'first server' },
+      { url: 'http://server-delete-two.com', description: 'two server' },
+    ],
   })
   @ApiParam({
     name: 'id',
@@ -116,7 +121,7 @@ export class DeleteController {
   })
   @ApiBasicAuth()
   deleteExample(
-    @Param('id', new ParseUUIDPipe()) id: string,
+    @Param() { id }: EntityIdParamDto,
     @Query('force', new DefaultValuePipe(false)) force: boolean,
     @Query('soft', new DefaultValuePipe(false)) soft: boolean,
     @Query('notify', new DefaultValuePipe(false)) notify: boolean,

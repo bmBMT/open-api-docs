@@ -4,6 +4,8 @@ import { groupOperationsByAlpha, groupOperationsByMethod } from "@open-api-docs/
 import Operation from "./operation";
 import { useEffect, useState } from "react";
 import type Scrollbars from "react-custom-scrollbars-2";
+import ServersSelect from "../servers-select";
+import useServerStore from "@/stores/server.store";
 
 const anchor = window.location.hash.slice(1);
 
@@ -12,6 +14,7 @@ interface IGroupedOperations {
 }
 
 const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
+  const { selectedServer, setSelectedServer } = useServerStore();
   const operationsSorter = useOpenApiStore(state => state.schema?.operationsSorter);
   const openApiDocument = useOpenApiStore(state => state.schema?.document);
   const sortFunction = operationsSorter === "alpha" ? groupOperationsByAlpha : groupOperationsByMethod;
@@ -36,18 +39,23 @@ const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
   }, [scrollbarRef]);
 
   return (
-    <Accordion type="multiple" value={accordionValue} onValueChange={onValueChange}>
-      {Object.entries(groupedOperations).map(([tag, operations]) => (
-        <AccordionItem key={tag} id={tag} value={tag}>
-          <AccordionTrigger className="text-lg">{tag}</AccordionTrigger>
-          <AccordionContent className="space-y-4">
-            {operations.map((operation, index) => (
-              <Operation key={index} tag={tag} schema={operation} />
-            ))}
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="space-y-1">
+      {openApiDocument?.servers && (
+        <ServersSelect servers={openApiDocument.servers} selected={selectedServer} onServerChange={setSelectedServer} />
+      )}
+      <Accordion type="multiple" value={accordionValue} onValueChange={onValueChange}>
+        {Object.entries(groupedOperations).map(([tag, operations]) => (
+          <AccordionItem key={tag} id={tag} value={tag}>
+            <AccordionTrigger className="text-lg">{tag}</AccordionTrigger>
+            <AccordionContent className="space-y-4">
+              {operations.map((operation, index) => (
+                <Operation key={index} tag={tag} schema={operation} />
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
   );
 };
 

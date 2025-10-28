@@ -6,6 +6,7 @@ import {
   type OpenApiDocumentType,
 } from "@open-api-docs/common";
 import { create } from "zustand";
+import useServerStore from "./server.store";
 
 interface IOpenApiStore {
   isLoading: boolean;
@@ -26,7 +27,13 @@ const useOpenApiStore = create<IOpenApiStore>(set => ({
     try {
       const schema = await api<OpenApiDocumentType>(schemaPath);
 
-      if (typeof schema === "object") set({ schema, isSchemaLoaded: true });
+      if (typeof schema === "object") {
+        if (schema.document.servers) {
+          useServerStore.setState({ selectedServer: schema.document.servers?.at(0)?.url || "" });
+        }
+
+        set({ schema, isSchemaLoaded: true });
+      }
     } catch {
       console.error("Error on load schema");
     } finally {

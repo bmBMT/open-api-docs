@@ -34,7 +34,7 @@ const OperationTrigger = ({ method, deprecated, path, summary, security }: IOper
           {method}
         </Badge>
         <Label className={cn("font-mono", deprecated && "line-through")}>{path}</Label>
-        {summary && <Label className="text-xs font-normal">{summary}</Label>}
+        {summary && <Label className="text-sm font-normal">{summary}</Label>}
       </div>
     </AccordionTrigger>
   );

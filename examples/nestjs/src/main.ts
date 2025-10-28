@@ -15,6 +15,8 @@ async function bootstrap() {
     .setTermsOfService('test')
     .setContact('namqwedase', 'url', 'email')
     .setLicense('license1', 'url')
+    .addServer('http://server-one.com', 'first server')
+    .addServer('http://server-two.com', 'two server')
     .addOAuth2()
     // .addSecurity('keycloak', {
     //   type: 'openIdConnect',

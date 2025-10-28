@@ -31,7 +31,7 @@ const useAuthStore = create<IAuthStore>()(
     })),
     {
       name: "auth-storage",
-      partialize: state => ({ storage: state.storage }),
+      partialize: state => ({storage: state.storage})
     }
   )
 );
