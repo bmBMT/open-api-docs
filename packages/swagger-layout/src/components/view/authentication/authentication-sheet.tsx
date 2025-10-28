@@ -4,13 +4,10 @@ import { Label } from "@/components/ui/label";
 import { Lock, LockOpen } from "lucide-react";
 import AuthenticationForms from "./authentication-forms";
 import useAuthStore from "@/stores/auth.store";
-import PerfectScrollbar from "react-perfect-scrollbar";
-import { useRef } from "react";
 
 const AuthenticationSheet = () => {
   const authStorage = useAuthStore(state => state.storage);
   const isSomeAuthorized = Object.keys(authStorage).length > 0;
-  const sheetScrollbarRef = useRef<PerfectScrollbar>(null);
 
   return (
     <Sheet>
@@ -22,14 +19,14 @@ const AuthenticationSheet = () => {
           </div>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" scrollbarRef={sheetScrollbarRef}>
+      <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Available authorizations</SheetTitle>
           <SheetDescription>
             Select any method to sign in or attach credentials — selections will be applied to subsequent API requests.
           </SheetDescription>
         </SheetHeader>
-        <AuthenticationForms scrollbarRef={sheetScrollbarRef} />
+        <AuthenticationForms />
       </SheetContent>
     </Sheet>
   );

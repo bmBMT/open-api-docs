@@ -6,7 +6,6 @@ import ApiKeySecurityForm from "./security-forms/api-key-security-form";
 import useOpenApiStore from "@/stores/open-api.store";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useAuthStore from "@/stores/auth.store";
-import PerfectScrollbar from "react-perfect-scrollbar";
 
 const renderSecurityForm = (name: string, schema: OpenAPIV3.ReferenceObject | OpenAPIV3.SecuritySchemeObject) => {
   if ((schema as OpenAPIV3.ReferenceObject).$ref) return;
@@ -27,20 +26,11 @@ const renderSecurityForm = (name: string, schema: OpenAPIV3.ReferenceObject | Op
   }
 };
 
-interface IAuthenticationForms {
-  scrollbarRef?: React.RefObject<PerfectScrollbar | null>;
-}
-
-const AuthenticationForms = ({ scrollbarRef }: IAuthenticationForms) => {
+const AuthenticationForms = () => {
   const schema = useOpenApiStore(state => state.schema?.document);
   const storage = useAuthStore(state => state.storage);
   const savedAuthNames = Object.keys(storage);
   const securitySchemeNames = Object.keys(schema?.components?.securitySchemes ?? {});
-
-  const updateScrollbar = () => {
-    if (!scrollbarRef?.current) return;
-    scrollbarRef?.current.updateScroll();
-  };
 
   return (
     <Accordion
@@ -49,7 +39,7 @@ const AuthenticationForms = ({ scrollbarRef }: IAuthenticationForms) => {
       defaultValue={securitySchemeNames.filter(name => !savedAuthNames.includes(name))}
     >
       {Object.entries(schema?.components?.securitySchemes ?? {}).map(([name, schema]) => (
-        <AccordionItem key={name} value={name} onClick={updateScrollbar}>
+        <AccordionItem key={name} value={name}>
           <AccordionTrigger className="capitalize">{name}</AccordionTrigger>
           <AccordionContent>{renderSecurityForm(name, schema)}</AccordionContent>
         </AccordionItem>

@@ -3,10 +3,15 @@ import useOpenApiStore from "@/stores/open-api.store";
 import { groupOperationsByMethod } from "@open-api-docs/common";
 import Operation from "./operation";
 import { useEffect, useState } from "react";
+import type Scrollbars from "react-custom-scrollbars-2";
 
 const anchor = window.location.hash.slice(1);
 
-const GroupedOperations = () => {
+interface IGroupedOperations {
+  scrollbarRef: React.RefObject<Scrollbars | null>;
+}
+
+const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
   const openApiDocument = useOpenApiStore(state => state.schema?.document);
   const groupedOperations = groupOperationsByMethod(openApiDocument!.paths);
   const [accordionValue, setAccordionValue] = useState([...Object.keys(groupedOperations), anchor]);
@@ -24,15 +29,9 @@ const GroupedOperations = () => {
   useEffect(() => {
     if (anchor) {
       const element = document.getElementById(anchor);
-      if (element) {
-        if ("scrollRestoration" in window.history) {
-          window.history.scrollRestoration = "manual";
-        }
-
-        window.scrollTo(0, element.offsetTop - 10);
-      }
+      if (element) scrollbarRef.current?.scrollTop(element.offsetTop - 10);
     }
-  }, []);
+  }, [scrollbarRef]);
 
   return (
     <Accordion type="multiple" value={accordionValue} onValueChange={onValueChange}>
