@@ -16,10 +16,10 @@ async function bootstrap() {
     .setContact('namqwedase', 'url', 'email')
     .setLicense('license1', 'url')
     .addOAuth2()
-    .addSecurity('keycloak', {
-      type: 'openIdConnect',
-      openIdConnectUrl: 'https://test.com',
-    })
+    // .addSecurity('keycloak', {
+    //   type: 'openIdConnect',
+    //   openIdConnectUrl: 'https://test.com',
+    // })
     .addBearerAuth()
     .addBasicAuth()
     .addApiKey()
@@ -29,7 +29,7 @@ async function bootstrap() {
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerBuiltConfig);
 
-  app.setGlobalPrefix('/api');
+  // app.setGlobalPrefix('/api');
 
   SwaggerModule.setup('/docs', app, swaggerDocument, {
     swaggerOptions: {

@@ -40,7 +40,7 @@ const AuthenticationForms = () => {
     >
       {Object.entries(schema?.components?.securitySchemes ?? {}).map(([name, schema]) => (
         <AccordionItem key={name} value={name}>
-          <AccordionTrigger className="capitalize">{name}</AccordionTrigger>
+          <AccordionTrigger className="capitalize hover:underline">{name}</AccordionTrigger>
           <AccordionContent>{renderSecurityForm(name, schema)}</AccordionContent>
         </AccordionItem>
       ))}

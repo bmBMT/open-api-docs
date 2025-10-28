@@ -17,21 +17,13 @@ import {
   ApiParam,
   ApiQuery,
   ApiResponse,
+  ApiTags,
 } from '@nestjs/swagger';
+import { DeleteBodyDto } from 'src/dtos/delete-body.dto';
+import { DeleteResponseDto } from 'src/dtos/delete-response.dto';
 // import { AuthGuard } from '@nestjs/passport';
 
-class DeleteExampleDto {
-  reason?: string;
-  confirm?: boolean;
-}
-
-class DeleteResultDto {
-  id: string;
-  deleted: boolean;
-  timestamp: Date;
-  message?: string;
-}
-
+@ApiTags('Example')
 @ApiBearerAuth()
 @Controller('delete')
 // @UseGuards(AuthGuard('jwt'))
@@ -76,7 +68,7 @@ export class DeleteController {
   })
   @ApiBody({
     description: 'Детали удаления',
-    type: DeleteExampleDto,
+    type: DeleteBodyDto,
     examples: {
       default: {
         summary: 'Обычное удаление',
@@ -91,7 +83,7 @@ export class DeleteController {
   @ApiResponse({
     status: 200,
     description: 'Объект успешно удалён',
-    type: DeleteResultDto,
+    type: DeleteResponseDto,
     schema: {
       example: {
         id: '550e8400-e29b-41d4-a716-446655440000',
@@ -126,8 +118,8 @@ export class DeleteController {
     @Query('force', new DefaultValuePipe(false)) force: boolean,
     @Query('soft', new DefaultValuePipe(false)) soft: boolean,
     @Query('notify', new DefaultValuePipe(false)) notify: boolean,
-    @Body() body: DeleteExampleDto,
-  ): DeleteResultDto {
+    @Body() body: DeleteBodyDto,
+  ): DeleteResponseDto {
     console.log('Delete params:', { id, force, soft, notify, body });
 
     return {
@@ -179,7 +171,7 @@ export class DeleteController {
   })
   @ApiBody({
     description: 'Детали удаления',
-    type: DeleteExampleDto,
+    type: DeleteBodyDto,
     examples: {
       default: {
         summary: 'Обычное удаление',
@@ -194,7 +186,7 @@ export class DeleteController {
   @ApiResponse({
     status: 200,
     description: 'Объект успешно удалён',
-    type: DeleteResultDto,
+    type: DeleteResponseDto,
     schema: {
       example: {
         id: '550e8400-e29b-41d4-a716-446655440000',

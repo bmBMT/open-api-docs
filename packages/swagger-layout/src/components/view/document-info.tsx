@@ -3,7 +3,7 @@ import { BookMarked } from "lucide-react";
 import { Label } from "../ui/label";
 import { Badge } from "../ui/badge";
 
-const SchemaInfo = () => {
+const DocumentInfo = () => {
   const schema = useOpenApiStore(state => state.schema?.document);
   const { title, description, version, contact, termsOfService, license } = schema?.info ?? {};
 
@@ -43,4 +43,4 @@ const SchemaInfo = () => {
   );
 };
 
-export default SchemaInfo;
+export default DocumentInfo;

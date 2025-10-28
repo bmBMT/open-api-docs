@@ -4,7 +4,7 @@ import { OctagonAlert } from "lucide-react";
 const OperationDeprecatedTooltip = () => {
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <OctagonAlert size={20} />
       </TooltipTrigger>
       <TooltipContent>This operation is deprecated!</TooltipContent>

@@ -19,10 +19,10 @@ const Operation = ({ tag, schema }: IOperation) => {
   const id = getOperationAccordionValue(tag, operationId);
 
   return (
-    <Card id={id} className={cn("shadow-none p-2 rounded-lg", deprecated && "opacity-60")}>
+    <Card id={id} className={cn("p-2 rounded-lg", deprecated && "opacity-60")}>
       <AccordionItem value={id}>
         <AccordionTrigger
-          className="hover:no-underline cursor-pointer bg-accent px-2 py-1.5"
+          className="bg-accent px-2 py-1.5"
           external={<Fragment>{deprecated && <OperationDeprecatedTooltip />}</Fragment>}
         >
           <OperationTrigger method={method} path={path} summary={summary} deprecated={deprecated} />
