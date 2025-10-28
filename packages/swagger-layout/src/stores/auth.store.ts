@@ -4,6 +4,8 @@ import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 interface IAuthStore {
+  isSheetOpened: boolean;
+  setAuthSheetState: (state: boolean) => void;
   storage: Record<string, StoredAuth>;
   setStorageItem: (key: string, value: StoredAuth) => void;
   clearStorageItem: (key: string) => void;
@@ -12,6 +14,11 @@ interface IAuthStore {
 const useAuthStore = create<IAuthStore>()(
   persist(
     immer(set => ({
+      isSheetOpened: false,
+      setAuthSheetState: sheetState =>
+        set(state => {
+          state.isSheetOpened = sheetState;
+        }),
       storage: {},
       setStorageItem: (key, value) =>
         set(state => {
@@ -24,6 +31,7 @@ const useAuthStore = create<IAuthStore>()(
     })),
     {
       name: "auth-storage",
+      partialize: state => ({ storage: state.storage }),
     }
   )
 );

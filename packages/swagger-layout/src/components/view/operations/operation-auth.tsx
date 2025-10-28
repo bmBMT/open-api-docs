@@ -7,12 +7,18 @@ interface IOperationAuth {
 }
 
 const OperationAuth = ({ security }: IOperationAuth) => {
-  const securityNames = security.map(obj => Object.keys(obj)).flat();
+  const setAuthSheetState = useAuthStore(state => state.setAuthSheetState);
   const authStorage = useAuthStore(state => state.storage);
-
+  const securityNames = security.map(obj => Object.keys(obj)).flat();
   const isSomeAuthorized = securityNames.some(securityName => authStorage[securityName]);
+  const Icon = isSomeAuthorized ? Lock : LockOpen;
 
-  return isSomeAuthorized ? <Lock size={20} /> : <LockOpen size={20} />;
+  const openAuthSheet = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    event.preventDefault();
+    setAuthSheetState(true);
+  };
+
+  return <Icon onClick={openAuthSheet} size={20} />;
 };
 
 export default OperationAuth;

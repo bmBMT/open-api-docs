@@ -7,10 +7,12 @@ import useAuthStore from "@/stores/auth.store";
 
 const AuthenticationSheet = () => {
   const authStorage = useAuthStore(state => state.storage);
+  const isSheetOpened = useAuthStore(state => state.isSheetOpened);
+  const setAuthSheetState = useAuthStore(state => state.setAuthSheetState);
   const isSomeAuthorized = Object.keys(authStorage).length > 0;
 
   return (
-    <Sheet>
+    <Sheet open={isSheetOpened} onOpenChange={setAuthSheetState}>
       <SheetTrigger asChild>
         <Button>
           <div className="flex space-x-2 items-center">
