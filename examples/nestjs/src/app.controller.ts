@@ -1,22 +1,51 @@
-import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Head,
+  Options,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiOkResponse, ApiTags, ApiBasicAuth } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiTags,
+  ApiBasicAuth,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 @ApiTags('ExampleController')
+@ApiTags('Test')
+@ApiTags('Test213')
+@ApiTags('Test213eq')
 @Controller()
 @ApiBasicAuth()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @ApiTags('Test')
-  @ApiOkResponse({ type: String })
+  @ApiOkResponse({ type: Number, description: 'response description' })
   getHello(): string {
     return this.appService.getHello();
   }
-  @Get('tes')
   @ApiOkResponse({ type: String })
   getHellsdo(): string {
+    return this.appService.getHello();
+  }
+  @Post('tes/:id')
+  @ApiOperation({
+    summary: 'summary',
+    description: ' description',
+    // deprecated: true,
+    externalDocs: {
+      url: 'https://externalDocs.url',
+      description: 'externalDocs description',
+    },
+  })
+  @ApiOkResponse({ type: String })
+  getHellsddwo(): string {
     return this.appService.getHello();
   }
   @Post()
@@ -37,6 +66,16 @@ export class AppController {
   @Put()
   @ApiOkResponse({ type: String })
   getHellso(): string {
+    return this.appService.getHello();
+  }
+  @Head()
+  @ApiOkResponse({ type: String })
+  getsdaHellso(): string {
+    return this.appService.getHello();
+  }
+  @Options()
+  @ApiOkResponse({ type: String })
+  getsddwqaHellso(): string {
     return this.appService.getHello();
   }
 }

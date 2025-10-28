@@ -1,0 +1,1 @@
+export const getAnchor = () => window.location.hash.slice(1)
