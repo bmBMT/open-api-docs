@@ -19,22 +19,22 @@ const SchemaInfo = () => {
         <div className="flex space-x-4">
           {termsOfService && (
             <a href={termsOfService}>
-              <Label className="cursor-pointer text-sm text-blue-500">Terms of service</Label>
+              <Label className="text-sm text-blue-500">Terms of service</Label>
             </a>
           )}
           {contact && (
             <a href={contact.url}>
-              <Label className="cursor-pointer text-sm text-blue-500">{contact.name} - Website</Label>
+              <Label className="text-sm text-blue-500">{contact.name} - Website</Label>
             </a>
           )}
           {contact && (
             <a href={`mailto:${contact.email}`}>
-              <Label className="cursor-pointer text-sm text-blue-500">Send email to {contact.name}</Label>
+              <Label className="text-sm text-blue-500">Send email to {contact.name}</Label>
             </a>
           )}
           {license && (
             <a href={license.url}>
-              <Label className="cursor-pointer text-sm text-blue-500">{license.name}</Label>
+              <Label className="text-sm text-blue-500">{license.name}</Label>
             </a>
           )}
         </div>

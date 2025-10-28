@@ -1,9 +1,13 @@
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { getOperationAccordionValue } from "@/lib/get-operation-accordion-value";
 import type { GroupedOperationObject } from "@open-api-docs/common";
+import OperationDescription from "./operation-description";
+import { cn } from "@/lib/utils";
+import { Fragment } from "react/jsx-runtime";
+import OperationDeprecatedTooltip from "./operation-deprecated-tooltip";
+import OperationTrigger from "./operation-trigger";
+import { Label } from "@/components/ui/label";
 
 interface IOperation {
   tag: string;
@@ -11,22 +15,22 @@ interface IOperation {
 }
 
 const Operation = ({ tag, schema }: IOperation) => {
-  const { method, path, summary, operationId } = schema;
+  const { method, path, summary, operationId, description, externalDocs, deprecated } = schema;
   const id = getOperationAccordionValue(tag, operationId);
 
   return (
-    <Card id={id} className="shadow-none p-2 rounded-lg">
+    <Card id={id} className={cn("shadow-none p-2 rounded-lg", deprecated && "opacity-60")}>
       <AccordionItem value={id}>
-        <AccordionTrigger className="hover:no-underline cursor-pointer bg-accent px-2 py-1.5">
-          <div className="flex space-x-2">
-            <Badge className="rounded-sm text-sm uppercase px-3 font-semibold" operationMethod={method}>
-              {method}
-            </Badge>
-            <Label className="font-mono">{path}</Label>
-            <Label className="text-xs font-normal">{summary}</Label>
-          </div>
+        <AccordionTrigger
+          className="hover:no-underline cursor-pointer bg-accent px-2 py-1.5"
+          external={<Fragment>{deprecated && <OperationDeprecatedTooltip />}</Fragment>}
+        >
+          <OperationTrigger method={method} path={path} summary={summary} deprecated={deprecated} />
         </AccordionTrigger>
-        <AccordionContent></AccordionContent>
+        <AccordionContent className="mt-4 mx-2 space-y-2">
+          {deprecated && <Label className="text-gray-60000">Warning: Deprecated</Label>}
+          <OperationDescription description={description} externalDocs={externalDocs} />
+        </AccordionContent>
       </AccordionItem>
     </Card>
   );

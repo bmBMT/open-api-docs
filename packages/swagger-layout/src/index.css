@@ -125,3 +125,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+a {
+  line-height: 1;
+}
+a * {
+  cursor: pointer;
+}
