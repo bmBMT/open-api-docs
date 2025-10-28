@@ -11,6 +11,7 @@ import {
   // UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBasicAuth,
   ApiBearerAuth,
   ApiBody,
   ApiOperation,
@@ -113,6 +114,7 @@ export class DeleteController {
     status: 500,
     description: 'Внутренняя ошибка сервера',
   })
+  @ApiBasicAuth()
   deleteExample(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Query('force', new DefaultValuePipe(false)) force: boolean,

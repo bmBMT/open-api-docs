@@ -6,10 +6,9 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import DocumentNotLoaded from "./components/view/document-not-loaded";
 import DocumentInfo from "./components/view/document-info";
 import ThemeSwitcher from "./components/view/theme-switcher";
-import SettingsPopover from "./components/view/settings-popover";
 import AuthenticationSheet from "./components/view/authentication/authentication-sheet";
 import Scrollbar from "./components/ui/scrollbar";
-import SchemasInfo from './components/view/schemas-info';
+import SchemasInfo from "./components/view/schemas-info";
 
 function App() {
   const initOpenApiStore = useOpenApiStore(state => state.init);
@@ -29,10 +28,7 @@ function App() {
         <div className="flex justify-between items-start">
           <DocumentInfo />
           <div className="flex flex-col space-y-5 items-end">
-            <div className="flex space-x-4">
-              <ThemeSwitcher />
-              <SettingsPopover />
-            </div>
+            <ThemeSwitcher />
             <AuthenticationSheet />
           </div>
         </div>
