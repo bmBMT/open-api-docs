@@ -58,7 +58,7 @@ function SheetContent({ className, children, side = "right", ...props }: SheetCo
         )}
         {...props}
       >
-        <Scrollbar className="[&>*]:p-4">{children}</Scrollbar>
+        <Scrollbar className="[&>div:first-child]:p-4">{children}</Scrollbar>
         <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-5.5 right-4 rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none bg-background">
           <XIcon className="size-5" />
           <span className="sr-only">Close</span>
