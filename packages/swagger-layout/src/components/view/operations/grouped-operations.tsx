@@ -26,7 +26,7 @@ const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
 
     if (isOpenedSomeAccordion) {
       window.history.replaceState(null, "", `#${value.at(-1)}`);
-    } else window.history.replaceState(null, "", "/");
+    } else window.history.replaceState(null, "", window.location.pathname);
 
     setAccordionValue(value);
   };

@@ -55,7 +55,7 @@ export class ApiDocsModule {
       res.send(html);
     });
 
-    httpAdapter.use(validatePath(join(finalPath, "assets")), (req: Request, res: Response) => {
+    httpAdapter.use('/assets', (req: Request, res: Response) => {
       const assetPath = join(buildPath, "assets", req.path);
       res.sendFile(assetPath);
     });
