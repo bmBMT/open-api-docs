@@ -6,6 +6,7 @@ import type { OpenAPIV3 } from "openapi-types";
 import { Fragment } from "react/jsx-runtime";
 import OperationDeprecatedTooltip from "./operation-deprecated-tooltip";
 import OperationAuth from "./operation-auth";
+import OperationClipboard from "./operation-clipboard";
 
 interface IOperationTrigger {
   deprecated?: boolean;
@@ -21,6 +22,7 @@ const OperationTrigger = ({ method, deprecated, path, summary, security }: IOper
       className="bg-accent px-2 py-1.5"
       external={
         <Fragment>
+          <OperationClipboard path={path} />
           {deprecated && <OperationDeprecatedTooltip />}
           {security && <OperationAuth security={security} />}
         </Fragment>
