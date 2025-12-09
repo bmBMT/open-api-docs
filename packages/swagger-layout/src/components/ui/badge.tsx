@@ -27,6 +27,14 @@ const badgeVariants = cva(
         patch: "bg-purple-700 dark:bg-purple-700/90",
         trace: "bg-[#9e9e9e] dark:bg-[#9e9e9e]/90",
       },
+      propertyType: {
+        string: "bg-green-100 text-green-800 border-green-200",
+        number: "bg-blue-100 text-blue-800 border-blue-200",
+        integer: "bg-blue-100 text-blue-800 border-blue-200",
+        boolean: "bg-purple-100 text-purple-800 border-purple-200",
+        object: "bg-orange-100 text-orange-800 border-orange-200",
+        array: "bg-pink-100 text-pink-800 border-pink-200",
+      },
     },
     defaultVariants: {
       variant: "default",
@@ -34,16 +42,25 @@ const badgeVariants = cva(
   }
 );
 
-function Badge({
-  className,
-  variant,
-  operationMethod,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"span"> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "span";
+const Badge = React.memo(
+  ({
+    className,
+    variant,
+    operationMethod,
+    propertyType,
+    asChild = false,
+    ...props
+  }: React.ComponentProps<"span"> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) => {
+    const Comp = asChild ? Slot : "span";
 
-  return <Comp data-slot="badge" className={cn(badgeVariants({ operationMethod, variant }), className)} {...props} />;
-}
+    return (
+      <Comp
+        data-slot="badge"
+        className={cn(badgeVariants({ propertyType, operationMethod, variant }), className)}
+        {...props}
+      />
+    );
+  }
+);
 
 export { Badge, badgeVariants };

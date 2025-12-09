@@ -1,7 +1,7 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class DeleteBodyDto {
-  @ApiPropertyOptional({ type: String })
+  @ApiProperty({ type: String, description: 'description', readOnly: true })
   reason?: string;
 
   @ApiPropertyOptional({ type: Boolean })

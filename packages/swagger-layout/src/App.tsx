@@ -8,7 +8,7 @@ import DocumentInfo from "./components/view/document-info";
 import ThemeSwitcher from "./components/view/theme-switcher";
 import AuthenticationSheet from "./components/view/authentication/authentication-sheet";
 import Scrollbar from "./components/ui/scrollbar";
-import SchemasInfo from "./components/view/schemas-info";
+import GroupedSchemas from "./components/view/schemas/grouped-schemas";
 
 function App() {
   const initOpenApiStore = useOpenApiStore(state => state.init);
@@ -33,7 +33,7 @@ function App() {
           </div>
         </div>
         <GroupedOperations scrollbarRef={scrollbarRef} />
-        <SchemasInfo />
+        <GroupedSchemas />
       </div>
     </Scrollbar>
   );

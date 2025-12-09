@@ -56,7 +56,7 @@ const BasicSchemaSecurityForm = ({ name, schema }: IAuthProps<OpenAPIV3.HttpSecu
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
                   disabled={isAuthorized}

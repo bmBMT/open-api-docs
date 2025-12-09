@@ -5,3 +5,6 @@ export * from "./get-nest-global-prefix";
 export * from "./validate-global-prefix";
 export * from "./group-operations-by-alpha";
 export * from "./group-operations-by-method";
+export * from "./parse-ref-object";
+export * from "./get-property-type";
+export * from "./get-ref-name";

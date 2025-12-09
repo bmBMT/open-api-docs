@@ -18,8 +18,8 @@ const ServersSelect = ({ servers, onServerChange, selected }: IServersSelect) =>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {servers.map(server => (
-            <SelectItem value={server.url}>
+          {servers.map((server, index) => (
+            <SelectItem key={index} value={server.url}>
               {server.url} - {server.description}
             </SelectItem>
           ))}

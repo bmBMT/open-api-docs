@@ -71,16 +71,6 @@ export class DeleteController {
   @ApiBody({
     description: 'Детали удаления',
     type: DeleteBodyDto,
-    examples: {
-      default: {
-        summary: 'Обычное удаление',
-        value: { reason: 'Duplicate record', confirm: true },
-      },
-      noConfirm: {
-        summary: 'Без подтверждения',
-        value: { reason: 'Obsolete data', confirm: false },
-      },
-    },
   })
   @ApiResponse({
     status: 200,
@@ -122,7 +112,7 @@ export class DeleteController {
     @Query('soft', new DefaultValuePipe(false)) soft: boolean,
     @Query('notify', new DefaultValuePipe(false)) notify: boolean,
     @Body() body: DeleteBodyDto,
-  ): DeleteResponseDto {
+  ) {
     console.log('Delete params:', { id, force, soft, notify, body });
 
     return {

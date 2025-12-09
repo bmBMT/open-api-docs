@@ -1,4 +1,5 @@
 import { Label } from "@/components/ui/label";
+import { Separator } from '@/components/ui/separator';
 import type { OpenAPIV3 } from "openapi-types";
 import { Fragment } from "react/jsx-runtime";
 
@@ -22,7 +23,7 @@ const OperationDescription = ({ description, externalDocs }: IOperationDescripti
           <div className="space-y-2 w-full">
             <div className="flex justify-between">
               <Label className="font-semibold">Find more details</Label>
-              <a href={externalDocs.url}>
+              <a href={externalDocs.url} target="_blank" rel="noopener noreferrer">
                 <Label className="text-[15px] text-blue-500">Docs Url</Label>
               </a>
             </div>
@@ -32,7 +33,7 @@ const OperationDescription = ({ description, externalDocs }: IOperationDescripti
           </div>
         )}
       </div>
-      <hr className="my-4" />
+      <Separator className="my-4" />
     </Fragment>
   );
 };

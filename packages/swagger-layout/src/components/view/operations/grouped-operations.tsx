@@ -1,11 +1,11 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useOpenApiStore from "@/stores/open-api.store";
+import useServerStore from "@/stores/server.store";
 import { groupOperationsByAlpha, groupOperationsByMethod } from "@open-api-docs/common";
-import Operation from "./operation";
 import { useEffect, useState } from "react";
 import type Scrollbars from "react-custom-scrollbars-2";
 import ServersSelect from "../servers-select";
-import useServerStore from "@/stores/server.store";
+import Operation from "./operation";
 
 const anchor = window.location.hash.slice(1);
 
@@ -46,7 +46,7 @@ const GroupedOperations = ({ scrollbarRef }: IGroupedOperations) => {
       <Accordion type="multiple" value={accordionValue} onValueChange={onValueChange}>
         {Object.entries(groupedOperations).map(([tag, operations]) => (
           <AccordionItem key={tag} id={tag} value={tag}>
-            <AccordionTrigger className="text-lg">{tag}</AccordionTrigger>
+            <AccordionTrigger className="text-lg hover:bg-accent/50 px-4">{tag}</AccordionTrigger>
             <AccordionContent className="space-y-4">
               {operations.map((operation, index) => (
                 <Operation key={index} tag={tag} schema={operation} />

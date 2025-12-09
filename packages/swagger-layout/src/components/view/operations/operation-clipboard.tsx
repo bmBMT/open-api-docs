@@ -24,7 +24,7 @@ const OperationClipboard = ({ path }: IOperationClipboard) => {
 
   return (
     <Tooltip open={copied}>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <ClipboardCopy size={20} onClick={onClick} />
       </TooltipTrigger>
       <TooltipContent>Operation copied!</TooltipContent>

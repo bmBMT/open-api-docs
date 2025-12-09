@@ -1,15 +1,15 @@
 import { AccordionContent, AccordionItem } from "@/components/ui/accordion";
-import { Card } from "@/components/ui/card";
-import { getOperationAccordionValue } from "@/lib/get-operation-accordion-value";
-import type { GroupedOperationObject } from "@open-api-docs/common";
-import OperationDescription from "./operation-description";
-import { cn } from "@/lib/utils";
-import OperationTrigger from "./operation-trigger";
-import { Label } from "@/components/ui/label";
-import ServersSelect from "../servers-select";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { getOperationAccordionValue } from "@/lib/get-operation-accordion-value";
+import { cn } from "@/lib/utils";
+import type { GroupedOperationObject } from "@open-api-docs/common";
+import { useMemo, useState } from "react";
 import { useToggle } from "usehooks-ts";
+import ServersSelect from "../servers-select";
+import OperationDescription from "./operation-description";
+import OperationTrigger from "./operation-trigger";
 // import useServerStore from "@/stores/server.store";
 
 interface IOperation {
@@ -21,7 +21,7 @@ const Operation = ({ tag, schema }: IOperation) => {
   const { method, path, summary, operationId, description, externalDocs, deprecated, security, servers } = schema;
   // const selectedGlobalServer = useServerStore(state => state.selectedServer);
   const [server, setServer] = useState(servers?.at(0)?.url);
-  const id = getOperationAccordionValue(tag, operationId);
+  const id = useMemo(() => getOperationAccordionValue(tag, operationId), [tag, operationId]);
   const [tryOperation, toggleTryOperation] = useToggle();
   const showServersSelector = servers && server;
 

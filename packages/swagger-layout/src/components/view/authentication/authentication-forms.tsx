@@ -7,12 +7,8 @@ import useOpenApiStore from "@/stores/open-api.store";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useAuthStore from "@/stores/auth.store";
 
-const renderSecurityForm = (name: string, schema: OpenAPIV3.ReferenceObject | OpenAPIV3.SecuritySchemeObject) => {
-  if ((schema as OpenAPIV3.ReferenceObject).$ref) return;
-
-  const schemaObject = schema as OpenAPIV3.SecuritySchemeObject;
-
-  switch (schemaObject.type) {
+const renderSecurityForm = (name: string, schema: OpenAPIV3.SecuritySchemeObject) => {
+  switch (schema.type) {
     case "http":
       return <HttpSecurityForm name={name} schema={schema as OpenAPIV3.HttpSecurityScheme} />;
     case "apiKey":
@@ -31,6 +27,7 @@ const AuthenticationForms = () => {
   const storage = useAuthStore(state => state.storage);
   const savedAuthNames = Object.keys(storage);
   const securitySchemeNames = Object.keys(schema?.components?.securitySchemes ?? {});
+  const parseRefObject = useOpenApiStore(state => state.parseRefObject);
 
   return (
     <Accordion
@@ -41,7 +38,7 @@ const AuthenticationForms = () => {
       {Object.entries(schema?.components?.securitySchemes ?? {}).map(([name, schema]) => (
         <AccordionItem key={name} value={name}>
           <AccordionTrigger className="capitalize hover:underline">{name}</AccordionTrigger>
-          <AccordionContent>{renderSecurityForm(name, schema)}</AccordionContent>
+          <AccordionContent>{renderSecurityForm(name, parseRefObject!(schema))}</AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
