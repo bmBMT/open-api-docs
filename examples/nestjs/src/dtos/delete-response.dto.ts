@@ -123,4 +123,9 @@ export class DeleteResponseDto {
     ],
   })
   anyOf: string;
+
+  @ApiProperty({
+    not: { type: 'string' },
+  })
+  not: string;
 }

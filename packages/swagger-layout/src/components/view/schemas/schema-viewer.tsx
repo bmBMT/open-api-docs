@@ -3,8 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import useOpenApiStore from "@/stores/open-api.store";
 import type { OpenAPIV3 } from "openapi-types";
 import SchemaProperty from "./schema-property";
-import SchemaPropertyOfInfo from "./schema-property-of-info";
-import { Fragment } from "react/jsx-runtime";
+import SchemaPropertyMatch from "./schema-property-match";
 
 interface ISchema {
   info: OpenAPIV3.SchemaObject;
@@ -15,7 +14,7 @@ const SchemaViewer = ({ info, isNested }: ISchema) => {
   const parseRefObject = useOpenApiStore(state => state.parseRefObject)!;
   const propertiesEntries = Object.entries(info?.properties ?? {});
   const isArraySchema = "items" in info;
-  const hasComposition = info.allOf || info.anyOf || info.oneOf;
+  const hasComposition = info.allOf || info.anyOf || info.oneOf || info.not;
 
   if (isArraySchema) return <SchemaViewer info={parseRefObject(info.items)} isNested />;
   return (
@@ -33,15 +32,10 @@ const SchemaViewer = ({ info, isNested }: ISchema) => {
             isNested={isNested}
           />
         ))
-      ) : hasComposition ? (
-        <Fragment>
-          <SchemaPropertyOfInfo refs={info.allOf} ofType="allOf" />
-          <SchemaPropertyOfInfo refs={info.anyOf} ofType="anyOf" />
-          <SchemaPropertyOfInfo refs={info.oneOf} ofType="oneOf" />
-        </Fragment>
-      ) : (
+      ) : !hasComposition ? (
         <Label className="text-gray-400 text-base pl-2">No properties defined</Label>
-      )}
+      ) : null}
+      {hasComposition && <SchemaPropertyMatch property={info} />}
     </div>
   );
 };

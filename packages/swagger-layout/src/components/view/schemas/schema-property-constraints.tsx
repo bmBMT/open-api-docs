@@ -19,7 +19,7 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
     exclusiveMaximum,
     pattern,
     maxProperties,
-    xml,
+    xml
   } = property;
 
   return (

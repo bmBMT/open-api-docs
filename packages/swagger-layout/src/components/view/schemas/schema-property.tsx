@@ -5,12 +5,14 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import useOpenApiStore from "@/stores/open-api.store";
 import { getPropertyType } from "@open-api-docs/common";
-import { useId } from "react";
+import { Fragment, useId } from "react";
 import SchemaPropertyRow from "./schema-property-row";
 import SchemaViewer from "./schema-viewer";
+import SchemaPropertyOfInfo from "./schema-property-match-info";
+import SchemaPropertyMatch from "./schema-property-match";
 
 interface ISchemaProperty {
-  name: string;
+  name?: string;
   property: OpenAPIV3.SchemaObject;
   required?: boolean;
   isLast?: boolean;
@@ -39,13 +41,15 @@ const SchemaProperty = (props: ISchemaProperty) => {
             <AccordionContent className={cn("border-l-2 pb-0 space-y-2")}>
               {!!propertiesEntries.length ? (
                 propertiesEntries.map(([name, prop]) => (
-                  <SchemaProperty
-                    key={name}
-                    name={name}
-                    property={parseRefObject!(prop)}
-                    required={property.required?.includes(name)}
-                    isNested
-                  />
+                  <Fragment>
+                    <SchemaProperty
+                      key={name}
+                      name={name}
+                      property={parseRefObject!(prop)}
+                      required={property.required?.includes(name)}
+                      isNested
+                    />
+                  </Fragment>
                 ))
               ) : (
                 <SchemaViewer info={property} isNested />
@@ -54,7 +58,10 @@ const SchemaProperty = (props: ISchemaProperty) => {
           </AccordionItem>
         </Accordion>
       ) : (
-        <SchemaPropertyRow {...props} />
+        <Fragment>
+          <SchemaPropertyRow {...props} />
+          <SchemaPropertyMatch property={property} />
+        </Fragment>
       )}
       {!isLast && !isNested && <Separator className="mb-4" />}
     </div>

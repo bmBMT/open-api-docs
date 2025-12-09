@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from "openapi-types";
 
 interface ISchemaPropertyRow {
-  name: string;
+  name?: string;
   property: OpenAPIV3.SchemaObject;
   required?: boolean;
 }

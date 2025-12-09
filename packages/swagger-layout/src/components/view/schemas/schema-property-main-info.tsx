@@ -5,7 +5,7 @@ import { ExternalLink, Lock, OctagonAlert, Pencil } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 
 interface ISchemaPropertyMainInfo {
-  name: string;
+  name?: string;
   property: OpenAPIV3.SchemaObject;
   required?: boolean;
 }
@@ -15,7 +15,7 @@ const SchemaPropertyMainInfo = ({ name, property, required }: ISchemaPropertyMai
     <div className="flex justify-between">
       <div className="space-y-1">
         <div className="flex space-x-2 items-center">
-          <Label className={cn("text-sm", property.deprecated && "line-through")}>{name}</Label>
+          {name && <Label className={cn("text-sm", property.deprecated && "line-through")}>{name}</Label>}
           {required && (
             <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 rounded-md">
               <Label className="text-xs">required</Label>

@@ -1,5 +1,5 @@
 import type { SchemaOfTypes } from "@/types/schema-of-types";
-import { GitBranch, GitMerge, Layers, type LucideIcon } from "lucide-react";
+import { Ban, GitBranch, GitMerge, Layers, type LucideIcon } from "lucide-react";
 
 interface IVariantContent {
   fill: string;
@@ -31,6 +31,13 @@ export const getMustMatchVariantContent = (variant: SchemaOfTypes) => {
       icon: GitBranch,
       text: "Must match EXACTLY ONE of the following schemas",
       border: "border-violet-200",
+    },
+    not: {
+      fill: "bg-red-50 border-red-300",
+      content: "text-red-800",
+      icon: Ban,
+      text: "Must NOT match the following schema",
+      border: "border-red-200",
     },
   };
 
