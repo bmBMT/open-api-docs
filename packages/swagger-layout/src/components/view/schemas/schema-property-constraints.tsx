@@ -19,7 +19,8 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
     exclusiveMaximum,
     pattern,
     maxProperties,
-    xml
+    xml,
+    multipleOf,
   } = property;
 
   return (
@@ -30,6 +31,12 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
           {minLength !== undefined && <Label>min: {minLength}</Label>}
           {minLength !== undefined && maxLength !== undefined && ", "}
           {maxLength !== undefined && <Label>max: {maxLength}</Label>}
+        </div>
+      )}
+      {multipleOf !== undefined && (
+        <div className="text-gray-600">
+          <Label className="text-gray-500">Multiple of: </Label>
+          <Label className="px-1.5 py-0.5 bg-purple-50 text-purple-800 rounded text-xs">{multipleOf}</Label>
         </div>
       )}
       {(minimum !== undefined || maximum !== undefined) && (
@@ -58,7 +65,7 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
           {maxItems !== undefined && <Label>max: {maxItems}</Label>}
         </div>
       )}
-      {maxProperties && (
+      {maxProperties !== undefined && (
         <div className="text-gray-600">
           <Label className="text-gray-500">Max properties: </Label>
           <Label>{maxProperties}</Label>

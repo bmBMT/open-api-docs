@@ -8,7 +8,6 @@ export class DeleteResponseDto {
     deprecated: true,
     readOnly: true,
     description: 'eqweq',
-    discriminator: { propertyName: 'teweqwe', mapping: { wd: 'dw' } },
     format: 'test',
   })
   id: string;
@@ -133,4 +132,9 @@ export class DeleteResponseDto {
     additionalProperties: { $ref: getSchemaPath(DeleteBodyDto) },
   })
   additionalProperties: string;
+
+  @ApiProperty({
+    multipleOf: 1,
+  })
+  multipleOf: string;
 }
