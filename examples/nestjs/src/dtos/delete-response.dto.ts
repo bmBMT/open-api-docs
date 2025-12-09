@@ -128,4 +128,9 @@ export class DeleteResponseDto {
     not: { type: 'string' },
   })
   not: string;
+
+  @ApiProperty({
+    additionalProperties: { $ref: getSchemaPath(DeleteBodyDto) },
+  })
+  additionalProperties: string;
 }

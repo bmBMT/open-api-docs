@@ -1,1 +1,1 @@
-export type SchemaOfTypes = "allOf" | "anyOf" | "oneOf" | 'not';
+export type SchemaOfTypes = "allOf" | "anyOf" | "oneOf" | "not" | "additionalProperties";

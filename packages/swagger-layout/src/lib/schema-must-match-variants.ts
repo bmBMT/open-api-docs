@@ -4,7 +4,7 @@ import { Ban, GitBranch, GitMerge, Layers, type LucideIcon } from "lucide-react"
 interface IVariantContent {
   fill: string;
   content: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   text: string;
   border: string;
 }
@@ -38,6 +38,12 @@ export const getMustMatchVariantContent = (variant: SchemaOfTypes) => {
       icon: Ban,
       text: "Must NOT match the following schema",
       border: "border-red-200",
+    },
+    additionalProperties: {
+      fill: "bg-teal-50 border-teal-200",
+      content: "text-teal-800",
+      text: "Additional properties schema",
+      border: "border-teal-200",
     },
   };
 

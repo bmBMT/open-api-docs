@@ -1,4 +1,4 @@
-import { getMustMatchVariantContent } from '@/lib/schema-must-match-variants';
+import { getMustMatchVariantContent } from "@/lib/schema-must-match-variants";
 import { cn } from "@/lib/utils";
 import type { SchemaOfTypes } from "@/types/schema-of-types";
 
@@ -7,13 +7,13 @@ interface IMustMatch {
 }
 
 const SchemaMustMatch = ({ variant }: IMustMatch) => {
-  const content = getMustMatchVariantContent(variant);
+  const { content, fill, text, icon: Icon } = getMustMatchVariantContent(variant);
 
   return (
-    <div className={cn("border-l-2 pl-3 py-2", content.fill)}>
-      <div className={cn("flex items-center gap-2 text-xs mb-1", content.content)}>
-        <content.icon className="w-3.5 h-3.5" />
-        <span>{content.text}:</span>
+    <div className={cn("border-l-2 pl-3 py-2", fill)}>
+      <div className={cn("flex items-center gap-2 text-xs mb-1", content)}>
+        {Icon && <Icon className="w-3.5 h-3.5" />}
+        <span>{text}:</span>
       </div>
     </div>
   );

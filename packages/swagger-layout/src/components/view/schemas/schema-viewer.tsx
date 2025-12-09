@@ -14,7 +14,7 @@ const SchemaViewer = ({ info, isNested }: ISchema) => {
   const parseRefObject = useOpenApiStore(state => state.parseRefObject)!;
   const propertiesEntries = Object.entries(info?.properties ?? {});
   const isArraySchema = "items" in info;
-  const hasComposition = info.allOf || info.anyOf || info.oneOf || info.not;
+  const hasComposition = info.allOf || info.anyOf || info.oneOf || info.not || info.additionalProperties;
 
   if (isArraySchema) return <SchemaViewer info={parseRefObject(info.items)} isNested />;
   return (
