@@ -28,12 +28,12 @@ const badgeVariants = cva(
         trace: "bg-[#9e9e9e] dark:bg-[#9e9e9e]/90",
       },
       propertyType: {
-        string: "bg-green-100 text-green-800 border-green-200",
-        number: "bg-blue-100 text-blue-800 border-blue-200",
-        integer: "bg-blue-100 text-blue-800 border-blue-200",
-        boolean: "bg-purple-100 text-purple-800 border-purple-200",
-        object: "bg-orange-100 text-orange-800 border-orange-200",
-        array: "bg-pink-100 text-pink-800 border-pink-200",
+        string: "bg-green-100 text-green-800 border-green-200 dark:bg-green-300 dark:border-green-400",
+        number: "bg-blue-100 dark:bg-blue-300 text-blue-800 border-blue-200 dark:border-blue-400",
+        integer: "bg-blue-100 dark:bg-blue-300 text-blue-800 border-blue-200 dark:border-blue-400",
+        boolean: "bg-purple-100 dark:bg-purple-300 text-purple-800 border-purple-200 dark:border-purple-400",
+        object: "bg-orange-100 dark:bg-orange-300 text-orange-800 border-orange-200 dark:border-orange-400",
+        array: "bg-pink-100 dark:bg-pink-300 text-pink-800 border-pink-200 dark:border-pink-400",
       },
     },
     defaultVariants: {

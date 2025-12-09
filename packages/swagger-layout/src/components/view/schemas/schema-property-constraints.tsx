@@ -36,7 +36,9 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
       {multipleOf !== undefined && (
         <div className="text-gray-600">
           <Label className="text-gray-500">Multiple of: </Label>
-          <Label className="px-1.5 py-0.5 bg-purple-50 text-purple-800 rounded text-xs">{multipleOf}</Label>
+          <Label className="px-1.5 py-0.5 bg-purple-50 dark:bg-purple-200 text-purple-800 rounded text-xs">
+            {multipleOf}
+          </Label>
         </div>
       )}
       {(minimum !== undefined || maximum !== undefined) && (
@@ -74,13 +76,16 @@ const SchemaPropertyConstraints = ({ property }: ISchemaPropertyConstraints) => 
       {pattern && (
         <div>
           <Label className="text-gray-500">Pattern: </Label>
-          <Badge variant="outline" className="border-gray-300 bg-gray-100 rounded-md text-gray-700">
+          <Badge
+            variant="outline"
+            className="border-gray-300 dark:border-gray-400 bg-gray-100 dark:bg-gray-300 rounded-md text-gray-700 dark:text-gray-800"
+          >
             {pattern}
           </Badge>
         </div>
       )}
       {xml && (
-        <Badge className="bg-amber-50 border-amber-200 rounded-md text-amber-900">
+        <Badge className="bg-amber-50 dark:bg-amber-100 border-amber-200 dark:border-amber-400 rounded-md text-amber-900">
           <Label className="text-amber-700">XML: </Label>
           {xml.name && `name="${xml.name}" `}
           {xml.namespace && `namespace="${xml.namespace}"`}

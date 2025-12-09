@@ -9,6 +9,7 @@ export class DeleteResponseDto {
     readOnly: true,
     description: 'eqweq',
     format: 'test',
+    nullable: true
   })
   id: string;
   @ApiProperty()
@@ -24,6 +25,7 @@ export class DeleteResponseDto {
     maxProperties: 10,
     pattern: 'ai90(238',
     externalDocs: { url: 'https://asd.wqe', description: 'asdwq' },
+    nullable: true,
     xml: {
       name: 'OrderItems',
       wrapped: true,
