@@ -16,7 +16,7 @@ const OperationDescription = ({ description, externalDocs }: IOperationDescripti
         {description && (
           <div className="space-y-2 w-full">
             <Label className="font-semibold">Description</Label>
-            <Label className="text-[15px] text-gray-500">{description}</Label>
+            <Label className="text-sm text-gray-500">{description}</Label>
           </div>
         )}
         {externalDocs && (
