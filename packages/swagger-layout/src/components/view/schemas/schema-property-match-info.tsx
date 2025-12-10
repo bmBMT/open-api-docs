@@ -1,11 +1,11 @@
 import SchemaMustMatch from "@/components/view/schemas/schema-must-match";
+import { getMustMatchVariantContent } from "@/constants/schema-must-match-variants";
 import { cn } from "@/lib/utils";
 import useOpenApiStore from "@/stores/open-api.store";
 import type { SchemaOfTypes } from "@/types/schema-of-types";
 import { getRefName } from "@open-api-docs/common";
 import type { OpenAPIV3 } from "openapi-types";
 import SchemaProperty from "./schema-property";
-import { getMustMatchVariantContent } from "@/lib/schema-must-match-variants";
 
 interface ISchemaPropertyOfInfo {
   refs?: Array<OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject> | OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject;

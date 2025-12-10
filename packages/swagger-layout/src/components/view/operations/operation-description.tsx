@@ -33,7 +33,7 @@ const OperationDescription = ({ description, externalDocs }: IOperationDescripti
           </div>
         )}
       </div>
-      <Separator className="my-4" />
+      <Separator />
     </Fragment>
   );
 };

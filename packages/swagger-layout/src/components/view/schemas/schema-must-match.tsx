@@ -1,4 +1,4 @@
-import { getMustMatchVariantContent } from "@/lib/schema-must-match-variants";
+import { getMustMatchVariantContent } from "@/constants/schema-must-match-variants";
 import { cn } from "@/lib/utils";
 import type { SchemaOfTypes } from "@/types/schema-of-types";
 

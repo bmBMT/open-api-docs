@@ -1,23 +1,31 @@
+import { cn } from "@/lib/utils";
 import useThemeStore from "@/stores/theme.store";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import type { Theme } from "@/types/theme.type";
 import { Moon, Sun, SunMoon } from "lucide-react";
-import { Label } from "../ui/label";
-import { cn } from "@/lib/utils";
 import { useEffect } from "react";
+import { Label } from "../ui/label";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 
 const ThemeSwitcher = () => {
   const theme = useThemeStore(state => state.theme);
   const setTheme = useThemeStore(state => state.setTheme);
-  const setThemsetCurrentThemee = useThemeStore(state => state.setCurrentTheme);
+  const setCurrentTheme = useThemeStore(state => state.setCurrentTheme);
 
   useEffect(() => {
     if (theme !== "system") return;
 
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const handleChange = (e: MediaQueryListEvent) => {
       const newColorScheme = e.matches ? "dark" : "light";
-      setThemsetCurrentThemee(newColorScheme);
-    });
+      setCurrentTheme(newColorScheme);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, [theme]);
 
   return (

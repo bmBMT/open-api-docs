@@ -1,10 +1,11 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
   ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
   ApiQuery,
+  ApiResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { EntityIdParamDto } from 'src/dtos/entity-id-param.dto';
 import { GetQuerysDto } from 'src/dtos/get-query.dto';
@@ -55,9 +56,12 @@ export class GetController {
     description: 'Количество элементов',
     example: 10,
   })
-  @ApiResponse({
-    status: 200,
-    description: 'Успешное получение списка элементов',
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'Успешное получение списка элементов',
+  //   type: PaginatedResponseDto,
+  // })
+  @ApiOkResponse({
     type: PaginatedResponseDto,
   })
   @ApiResponse({ status: 400, description: 'Некорректные параметры запроса' })

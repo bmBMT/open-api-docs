@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { useToggle } from "usehooks-ts";
 import ServersSelect from "../servers-select";
 import OperationDescription from "./operation-description";
+import OperationResponsesList from "./operation-responses/operation-responses-list";
 import OperationTrigger from "./operation-trigger";
 // import useServerStore from "@/stores/server.store";
 
@@ -27,9 +28,9 @@ const Operation = ({ tag, schema }: IOperation) => {
 
   return (
     <Card id={id} className={cn("p-2 rounded-lg", deprecated && "opacity-60")}>
-      <AccordionItem value={id}>
+      <AccordionItem value={id} className='border-b-0'>
         <OperationTrigger method={method} path={path} summary={summary} deprecated={deprecated} security={security} />
-        <AccordionContent className="mt-4 mx-2 space-y-2">
+        <AccordionContent className="mt-4 mx-2 space-y-6">
           {deprecated && <Label className="text-gray-60000">Warning: Deprecated</Label>}
           <OperationDescription description={description} externalDocs={externalDocs} />
           <div className={cn("flex items-end", showServersSelector ? "justify-between" : "justify-end")}>
@@ -38,6 +39,7 @@ const Operation = ({ tag, schema }: IOperation) => {
               {tryOperation ? "Cancel" : "Try it out"}
             </Button>
           </div>
+          <OperationResponsesList responses={schema.responses} />
         </AccordionContent>
       </AccordionItem>
     </Card>
