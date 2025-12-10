@@ -4,10 +4,21 @@ import type { Theme } from "@/types/theme.type";
 import { Moon, Sun, SunMoon } from "lucide-react";
 import { Label } from "../ui/label";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 const ThemeSwitcher = () => {
   const theme = useThemeStore(state => state.theme);
   const setTheme = useThemeStore(state => state.setTheme);
+  const setThemsetCurrentThemee = useThemeStore(state => state.setCurrentTheme);
+
+  useEffect(() => {
+    if (theme !== "system") return;
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+      const newColorScheme = e.matches ? "dark" : "light";
+      setThemsetCurrentThemee(newColorScheme);
+    });
+  }, [theme]);
 
   return (
     <Tabs value={theme} onValueChange={theme => setTheme(theme as Theme)}>

@@ -5,13 +5,16 @@ const STORAGE_KEY = "theme";
 
 interface IThemeStore {
   theme: Theme;
+  currentTheme: Omit<Theme, "system">;
   initTheme: () => void;
   setTheme: (theme: Theme) => void;
+  setCurrentTheme: (theme: "dark" | "light") => void;
   updateBrowserTheme: (theme: Theme) => void;
 }
 
 const useThemeStore = create<IThemeStore>((set, get) => ({
   theme: "system",
+  currentTheme: "light",
   initTheme: () => {
     const theme = localStorage.getItem(STORAGE_KEY) as Theme;
 
@@ -29,19 +32,23 @@ const useThemeStore = create<IThemeStore>((set, get) => ({
     updateBrowserTheme(theme);
     set({ theme });
   },
-  updateBrowserTheme: (theme: Theme) => {
+  setCurrentTheme: theme => {
     const root = window.document.documentElement;
-
     root.classList.remove("light", "dark");
+
+    set({ currentTheme: theme });
+    root.classList.add(theme);
+  },
+  updateBrowserTheme: (theme: Theme) => {
+    const setCurrentTheme = get().setCurrentTheme;
 
     if (theme === "system") {
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
-      root.classList.add(systemTheme);
-      return;
+      return setCurrentTheme(systemTheme);
     }
 
-    root.classList.add(theme);
+    setCurrentTheme(theme);
   },
 }));
 

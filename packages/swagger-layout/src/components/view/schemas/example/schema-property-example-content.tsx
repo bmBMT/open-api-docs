@@ -1,5 +1,6 @@
 import { isObject } from "@/lib/is-object";
 import { cn } from "@/lib/utils";
+import useThemeStore from "@/stores/theme.store";
 import JsonView from "react-json-view";
 
 interface ISchemaPropertyExampleContent {
@@ -7,7 +8,20 @@ interface ISchemaPropertyExampleContent {
 }
 
 function SchemaPropertyExampleContent({ example }: ISchemaPropertyExampleContent) {
-  if (isObject(example)) return <JsonView src={example as object} name={null} displayDataTypes={false} collapsed={0} />;
+  const currentTheme = useThemeStore(state => state.currentTheme);
+
+  if (isObject(example))
+    return (
+      <JsonView
+        src={example as object}
+        name={null}
+        displayDataTypes={false}
+        collapsed={0}
+        theme={currentTheme === "light" ? "grayscale:inverted" : "grayscale"}
+        style={{ backgroundColor: "transparent" }}
+      />
+    );
+
   if (Array.isArray(example))
     return example.map((item, index) => (
       <div
